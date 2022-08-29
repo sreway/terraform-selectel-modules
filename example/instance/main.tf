@@ -51,9 +51,9 @@ module "instance" {
   ]
 }
 
-// Create floating ip addresses
+// Create floating ip addresses and mapping inctances ports
 module "floating_ip" {
-  source   = "git::https://github.com/sreway/terraform-selectel-modules.git//modules/vpc/network/floating_ip"
+  source   = "git::https://github.com/sreway/terraform-selectel-modules.git//modules/vpc/network/floating_ip_mapping"
   for_each = { for k, v in module.instance : k => v if var.instances[k].create_floating_ip == true }
   port_id  = module.instance[each.key].instance_port_id
   depends_on = [

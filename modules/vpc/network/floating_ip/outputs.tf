@@ -1,7 +1,7 @@
-output "floating_ip" {
-  value = openstack_networking_floatingip_associate_v2.association.floating_ip
+output "floating_ip_id" {
+  value = openstack_networking_floatingip_v2.floating_ip.id
 }
 
-output "port_id" {
-  value = openstack_networking_floatingip_associate_v2.association.port_id
+output "floating_ip_address" {
+  value = openstack_networking_floatingip_v2.floating_ip.address
 }
