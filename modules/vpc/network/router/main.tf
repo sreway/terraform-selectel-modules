@@ -3,7 +3,7 @@ data "openstack_networking_network_v2" "external_net" {
 }
 
 resource "openstack_networking_router_v2" "router" {
-  name = var.router_name
+  name                = var.router_name
   external_network_id = data.openstack_networking_network_v2.external_net.id
 }
 

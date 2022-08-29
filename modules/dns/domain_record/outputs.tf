@@ -3,11 +3,11 @@ output "domain_content" {
 }
 
 output "domain_name" {
-    value = selectel_domains_record_v1.record.name
+  value = selectel_domains_record_v1.record.name
 }
 
 output "domain_id" {
-    value = selectel_domains_record_v1.record.domain_id
+  value = selectel_domains_record_v1.record.domain_id
 }
 
 output "domain_email" {

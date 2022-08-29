@@ -1,4 +1,4 @@
 variable "image_name" {
-  type = string
+  type        = string
   description = "Name of the OpenStack image"
 }
