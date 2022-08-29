@@ -63,7 +63,7 @@ module "floating_ip" {
 
 // Create DNS records
 module "domain_record" {
-  source = "git::https://github.com/sreway/terraform-selectel-modules.git//modules/vpc/network/dns/domain_record"
+  source = "git::https://github.com/sreway/terraform-selectel-modules.git//modules/dns/domain_record"
   for_each = var.dns_records
   domain_name = each.value.domain
   domain_record_name = each.value.name
