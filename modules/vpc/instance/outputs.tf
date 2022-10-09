@@ -14,6 +14,6 @@ output "tags" {
   value = openstack_compute_instance_v2.compute_instance.all_tags
 }
 
-output "instance_remote_volumes" {
+output "remote_volumes" {
   value = module.remote_volume
 }
