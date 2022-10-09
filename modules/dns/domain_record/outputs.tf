@@ -1,31 +1,31 @@
-output "domain_content" {
+output "content" {
   value = selectel_domains_record_v1.record.content
 }
 
-output "domain_name" {
+output "name" {
   value = selectel_domains_record_v1.record.name
 }
 
-output "domain_id" {
+output "id" {
   value = selectel_domains_record_v1.record.domain_id
 }
 
-output "domain_email" {
+output "email" {
   value = selectel_domains_record_v1.record.email
 }
 
-output "domain_priority" {
+output "priority" {
   value = selectel_domains_record_v1.record.priority
 }
 
-output "domain_weight" {
+output "weight" {
   value = selectel_domains_record_v1.record.weight
 }
 
-output "domain_port" {
+output "port" {
   value = selectel_domains_record_v1.record.port
 }
 
-output "domain_target" {
+output "target" {
   value = selectel_domains_record_v1.record.target
 }

@@ -1,3 +1,3 @@
-output "volume_id" {
+output "id" {
   value = openstack_blockstorage_volume_v3.volume.id
 }

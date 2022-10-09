@@ -26,8 +26,8 @@ module "datasource_image" {
 
 resource "openstack_compute_instance_v2" "compute_instance" {
   name              = var.instance_name
-  image_id          = module.datasource_image.image_id
-  flavor_id         = module.flavor.flavor_id
+  image_id          = module.datasource_image.id
+  flavor_id         = module.flavor.id
   availability_zone = var.instance_zone
   key_pair          = data.openstack_compute_keypair_v2.key_pair.id
 
@@ -58,5 +58,5 @@ module "remote_volume" {
 resource "openstack_compute_volume_attach_v2" "remote_volumes" {
   for_each    = module.remote_volume
   instance_id = openstack_compute_instance_v2.compute_instance.id
-  volume_id   = each.value.volume_id
+  volume_id   = each.value.id
 }
