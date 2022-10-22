@@ -20,12 +20,12 @@ all:
 %{ for instance in instances ~}
 %{ if contains(instance.tags, tag) ~}
         ${ instance.access_ip_v4 }:
-%{ endif ~}
 %{ for floating_ip in floating_ips ~}
 %{ if floating_ip.fixed_ip == instance.access_ip_v4 ~}
         ${ floating_ip.address }:
 %{ endif ~}
 %{ endfor ~}
+%{ endif ~}
 %{ endfor ~}
 %{ endfor ~}
 %{ endif ~}
