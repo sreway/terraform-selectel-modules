@@ -10,4 +10,7 @@ resource "openstack_networking_floatingip_associate_v2" "association" {
 
 data "openstack_networking_floatingip_v2" "floating_ip" {
   address = openstack_networking_floatingip_associate_v2.association.floating_ip
+  depends_on = [
+    module.floating_ip,
+  ]
 }
