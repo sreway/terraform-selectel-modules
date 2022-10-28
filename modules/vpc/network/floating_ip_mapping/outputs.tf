@@ -3,7 +3,7 @@ output "address" {
 }
 
 output "fixed_ip" {
-  value = data.openstack_networking_floatingip_v2.floating_ip.fixed_ip
+  value = module.floating_ip.address
 }
 
 output "id" {
@@ -15,7 +15,7 @@ output "pool" {
 }
 
 output "port_id" {
-  value = data.openstack_networking_floatingip_v2.floating_ip.port_id
+  value = var.port_id
 }
 
 output "region" {
