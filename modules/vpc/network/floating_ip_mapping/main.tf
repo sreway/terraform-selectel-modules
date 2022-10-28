@@ -5,5 +5,9 @@ module "floating_ip" {
 
 resource "openstack_networking_floatingip_associate_v2" "association" {
   port_id     = var.port_id
-  floating_ip = module.floating_ip.ip_address
+  floating_ip = module.floating_ip.address
+}
+
+data "openstack_networking_floatingip_v2" "floating_ip" {
+  address = openstack_networking_floatingip_associate_v2.association.floating_ip
 }
