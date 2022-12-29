@@ -3,11 +3,13 @@ data "openstack_compute_keypair_v2" "key_pair" {
 }
 
 module "flavor" {
-  source       = "git::https://github.com/sreway/terraform-selectel-modules.git//modules/vpc/flavor"
-  flavor_name  = var.instance_name
-  flavor_vcpus = var.instance_vcpus
-  flavor_ram   = var.instance_ram
-  flavor_disk  = var.instance_disk
+  #source       = "git::https://github.com/sreway/terraform-selectel-modules.git//modules/vpc/flavor"
+  source             = "/Users/andy/Work/sreway/iac/terraform-selectel-modules/modules/vpc/flavor"
+  flavor_name        = var.instance_name
+  flavor_vcpus       = var.instance_vcpus
+  flavor_ram         = var.instance_ram
+  flavor_disk        = var.instance_disk
+  flavor_disk_remote = var.instance_disk_remote
 }
 
 resource "openstack_networking_port_v2" "network_port" {
@@ -24,6 +26,16 @@ module "datasource_image" {
   image_name = var.instance_image
 }
 
+module "remote_root_disk" {
+  source          = "git::https://github.com/sreway/terraform-selectel-modules.git//modules/vpc/remote_volume"
+  count           = var.instance_disk_remote == false ? 0 : 1
+  volume_name     = "root-${var.instance_name}"
+  volume_image_id = module.datasource_image.id
+  volume_size     = var.instance_disk
+  volume_type     = var.instance_disk_type
+  volume_zone     = var.instance_zone
+}
+
 resource "openstack_compute_instance_v2" "compute_instance" {
   name              = var.instance_name
   image_id          = module.datasource_image.id
@@ -34,6 +46,17 @@ resource "openstack_compute_instance_v2" "compute_instance" {
   network {
     port = openstack_networking_port_v2.network_port.id
   }
+
+  dynamic "block_device" {
+    for_each = var.instance_disk_remote == true ? module.remote_root_disk : []
+    content {
+      uuid             = block_device.value.id
+      source_type      = "volume"
+      destination_type = "volume"
+      boot_index       = 0
+    }
+  }
+
 
   lifecycle {
     ignore_changes = [image_id]

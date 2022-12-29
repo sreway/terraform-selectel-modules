@@ -26,6 +26,18 @@ variable "instance_disk" {
   description = "Amount of disk space (in gigabytes) to use for the root (/) partition"
 }
 
+variable "instance_disk_remote" {
+  type        = bool
+  default     = false
+  description = "Disk to use for the root (/) is remote disk"
+}
+
+variable "instance_disk_type" {
+  type        = string
+  default     = false
+  description = "Remote root disk type. Available types: fast, basic, universal"
+}
+
 variable "instance_public" {
   type        = bool
   default     = false

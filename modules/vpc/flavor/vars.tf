@@ -21,6 +21,12 @@ variable "flavor_disk" {
   description = "Amount of disk space (in gigabytes) to use for the root (/) partition"
 }
 
+variable "flavor_disk_remote" {
+  type        = bool
+  default     = false
+  description = "Disk to use for the root (/) is remote disk"
+}
+
 variable "flavor_public" {
   type        = bool
   default     = false
