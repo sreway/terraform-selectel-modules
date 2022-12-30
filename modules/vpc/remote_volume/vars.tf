@@ -16,6 +16,7 @@ variable "volume_image_id" {
 
 variable "volume_type" {
   type        = string
+  default     = "universal"
   description = "The type of volume to create. Available types: fast, basic, universal"
 }
 
