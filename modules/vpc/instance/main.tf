@@ -3,8 +3,7 @@ data "openstack_compute_keypair_v2" "key_pair" {
 }
 
 module "flavor" {
-  #source       = "git::https://github.com/sreway/terraform-selectel-modules.git//modules/vpc/flavor"
-  source             = "/Users/andy/Work/sreway/iac/terraform-selectel-modules/modules/vpc/flavor"
+  source       = "git::https://github.com/sreway/terraform-selectel-modules.git//modules/vpc/flavor"
   flavor_name        = var.instance_name
   flavor_vcpus       = var.instance_vcpus
   flavor_ram         = var.instance_ram
